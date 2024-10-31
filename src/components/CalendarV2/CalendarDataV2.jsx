@@ -1,14 +1,14 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
+import env from 'react-dotenv';
 
 // UPDATE CALENDAR DATA HERE
 // https://airtable.com/appcgw78ivd84I8iC/tblIp6K3y5WInuAoR/viwISFvh98JdPpjo9?blocks=hide
 
-dotenv.config;
 
-const AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
-const BASE_ID = process.env.REACT_APP_BASE_ID;
-const TABLE_ID_OCTOBER = process.env.REACT_APP_TABLE_ID_OCTOBER;
+
+const AIRTABLE_API_KEY = env.REACT_APP_AIRTABLE_API_KEY;
+const BASE_ID = env.REACT_APP_BASE_ID;
+const TABLE_ID_OCTOBER = env.REACT_APP_TABLE_ID_OCTOBER;
 
 console.log("API Key:", AIRTABLE_API_KEY);
 console.log("Base ID:", BASE_ID);
