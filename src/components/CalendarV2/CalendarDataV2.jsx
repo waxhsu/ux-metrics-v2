@@ -7,6 +7,8 @@ const AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
 const BASE_ID = process.env.REACT_APP_BASE_ID;
 const TABLE_ID_OCTOBER = process.env.REACT_APP_TABLE_ID_OCTOBER;
 
+console.log(AIRTABLE_API_KEY)
+
 export const COHORT_DATE_RANGE_OCTOBER = [
   {
     start: `Nov 5`,
