@@ -8,6 +8,9 @@ const BASE_ID = process.env.REACT_APP_BASE_ID;
 const TABLE_ID_OCTOBER = process.env.REACT_APP_TABLE_ID_OCTOBER;
 
 console.log(AIRTABLE_API_KEY)
+console.log(BASE_ID)
+console.log(TABLE_ID_OCTOBER)
+
 
 export const COHORT_DATE_RANGE_OCTOBER = [
   {
