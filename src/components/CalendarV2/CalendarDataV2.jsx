@@ -3,13 +3,9 @@ import axios from 'axios';
 // UPDATE CALENDAR DATA HERE
 // https://airtable.com/appcgw78ivd84I8iC/tblIp6K3y5WInuAoR/viwISFvh98JdPpjo9?blocks=hide
 
-// const AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
-// const BASE_ID = process.env.REACT_APP_BASE_ID;
-// const TABLE_ID_OCTOBER = process.env.REACT_APP_TABLE_ID_OCTOBER;
-
-const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-const BASE_ID = process.env.BASE_ID;
-const TABLE_ID_OCTOBER = process.env.TABLE_ID_OCTOBER;
+const AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
+const BASE_ID = process.env.REACT_APP_BASE_ID;
+const TABLE_ID_OCTOBER = process.env.REACT_APP_TABLE_ID_OCTOBER;
 
 console.log("API Key:", AIRTABLE_API_KEY);
 console.log("Base ID:", BASE_ID);
