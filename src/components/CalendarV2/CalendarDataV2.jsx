@@ -7,7 +7,7 @@ const AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
 const BASE_ID = process.env.REACT_APP_BASE_ID;
 const TABLE_ID_OCTOBER = process.env.REACT_APP_TABLE_ID_OCTOBER;
 
-console.log("API Key:", AIRTABLE_API_KEY);
+console.log("API KeyV2:", AIRTABLE_API_KEY);
 console.log("Base ID:", BASE_ID);
 console.log("Table ID:", TABLE_ID_OCTOBER);
 
