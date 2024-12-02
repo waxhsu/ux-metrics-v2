@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { fetchOctober } from './CalendarDataV2.jsx';
 import ReactMarkdown from 'react-markdown';
-
-import './CalendarV2.css';
 import { useLocation } from 'react-router-dom';
-import { COHORT_DATE_RANGE_OCTOBER } from './CalendarDataV2'
 import playButton1 from './playButton1.png'
 import playButton2 from './playButton2.png'
+import './CalendarV2.css';
+
+import { fetchCohort5 } from './CalendarDataV2.jsx'; // <--------- UPDATE
+import { COHORT5_DATE_RANGE } from './CalendarDataV2'; // <--------- UPDATE
+
 
 export default function CalendarV2() {
     const [expandedSections, setExpandedSections] = useState({});
@@ -25,7 +26,7 @@ export default function CalendarV2() {
 
     useEffect(() => {
         const loadEvents = async () => {
-          const fetchedData = await fetchOctober();
+          const fetchedData = await fetchCohort5(); // <--------- UPDATE
       
           // Sort events by week number in ascending order
           const sortedEvents = fetchedData.sort((a, b) => a.week - b.week);
@@ -40,14 +41,19 @@ export default function CalendarV2() {
         // containerClass here is a CSS class that toggles off on the home page.
         <div className={containerClass}>
             <div className='calendar'>
-                <h2>Cohort: {COHORT_DATE_RANGE_OCTOBER[0].start} - {COHORT_DATE_RANGE_OCTOBER[0].end}</h2>
-                <h3>UPDATE New Start Date For Cohort Previously Starting Oct 29.</h3>
+                
+                <h2>Cohort: {COHORT5_DATE_RANGE[0].start} - {COHORT5_DATE_RANGE[0].end}</h2>
+
+                {/* <h3>UPDATE IF YOU NEED TO ANNOUNCE ANY CHANGES TO THE ENTIRE SCHEDULE</h3> */}
+                
                 {events.map((event, index) => {
                     return (
                         <div className='test123' key={index}>
                             <div id='scheduleCard'>
                                 <div id='WeekNUM'>
                                     <div className='weekInfo'>Week {event.week} of 4</div>
+
+
 
                                     {/* Odd Numbered Topic */}
                                     <div id='oddTopicNumber' className='headerTitle' onClick={() => toggleDetails(index)}>
@@ -73,7 +79,7 @@ export default function CalendarV2() {
                                         <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.timeCoaching2}</div>
+                                        <div className='optionTime'>{event.timeCoaching1}</div>
                                         <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Odd Numbered Topic */}

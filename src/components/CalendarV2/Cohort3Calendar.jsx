@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import './Calendar.css';
+import React, { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useLocation } from 'react-router-dom';
-import { HARDCORE_DETAILS_NOVEMBER } from './CalendarData'
-import { COHORT_DATE_RANGE_NOVEMBER } from './CalendarData'
 import playButton1 from './playButton1.png'
 import playButton2 from './playButton2.png'
+import './CalendarV2.css';
 
-export default function Calendar() {
+import { fetchCohort3 } from './CalendarDataV2.jsx';
+import { COHORT3_DATE_RANGE } from './CalendarDataV2';
+
+
+export default function CalendarV2() {
     const [expandedSections, setExpandedSections] = useState({});
-    const location = useLocation();  // Get the current path
-
-
+    const location = useLocation();
     const toggleDetails = (index) => {
         setExpandedSections(prevState => ({
             ...prevState,
@@ -18,20 +19,38 @@ export default function Calendar() {
         }));
     };
 
-
     // Conditionally add the class 'inactive' when on the home page ("/")
     const containerClass = location.pathname !== '/' ? 'calendar-container' : '';
 
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        const loadEvents = async () => {
+          const fetchedData = await fetchCohort3();
+      
+          // Sort events by week number in ascending order
+          const sortedEvents = fetchedData.sort((a, b) => a.week - b.week);
+      
+          setEvents(sortedEvents);
+        };
+      
+        loadEvents();
+      }, []);
+
     return (
+        // containerClass here is a CSS class that toggles off on the home page.
         <div className={containerClass}>
-            <div className='calendar'>
-                <h2>Cohort: {COHORT_DATE_RANGE_NOVEMBER[0].start} - {COHORT_DATE_RANGE_NOVEMBER[0].end}</h2>
-                {HARDCORE_DETAILS_NOVEMBER.map((classInfo, index) => {
+            <div className='calendarV2'>
+                <h2>Cohort: {COHORT3_DATE_RANGE[0].start} - {COHORT3_DATE_RANGE[0].end}</h2>
+                
+                {/* <h3>UPDATE IF YOU NEED TO ANNOUNCE ANY CHANGES TO THE ENTIRE SCHEDULE</h3> */}
+                
+                {events.map((event, index) => {
                     return (
                         <div className='test123' key={index}>
                             <div id='scheduleCard'>
                                 <div id='WeekNUM'>
-                                    <div className='weekInfo'>Week {classInfo.weekNum} of 4</div>
+                                    <div className='weekInfo'>Week {event.week} of 4</div>
 
 
 
@@ -39,7 +58,7 @@ export default function Calendar() {
                                     <div id='oddTopicNumber' className='headerTitle' onClick={() => toggleDetails(index)}>
                                         <div className='mobile-row'>
                                             <img src={playButton1} className={`scheduleIconImg ${expandedSections[index] ? 'rotated' : ''}`} alt='playButton1' />
-                                            <div className='classTitle'>{classInfo.topicTitle1}</div>
+                                            <div className='classTitle'>{event.name1}</div>
                                         </div>
                                         <div>
                                             <div className='clickDetails'>Topic Details</div>
@@ -49,58 +68,51 @@ export default function Calendar() {
                                     {expandedSections[index] && (
                                         <>
                                             <div className='topicDetails'>
-                                                <ul>{classInfo.topicDetails1_1}</ul>
-                                                <ul>{classInfo.topicDetails1_2}</ul>
-                                                <ul>{classInfo.topicDetails1_3}</ul>
-                                                <li>{classInfo.topicDetails1_bullet1}</li>
-                                                <li>{classInfo.topicDetails1_bullet2}</li>
-                                                <li>{classInfo.topicDetails1_bullet3}</li>
+                                                <ReactMarkdown>{event.rich1}</ReactMarkdown>
                                             </div>
                                         </>
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionDate'>{classInfo.topicTitle1_date1}</div>
-                                        <div className='optionTitle'>{classInfo.topicTitle1_title1}</div>
+                                        <div className='optionTime'>{event.timeLecture1}</div>
+                                        <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionDate'>{classInfo.topicTitle1_date2}</div>
-                                        <div className='optionTitle'>{classInfo.topicTitle1_title2}</div>
+                                        <div className='optionTime'>{event.timeCoaching1}</div>
+                                        <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Odd Numbered Topic */}
 
 
+
+
+
                                     {/* START Even Numbered Topic */}
-                                    <div id='evenTopicNumber' className='headerTitle' onClick={() => toggleDetails(index + 0.1)}>
+                                    <div id='oddTopicNumber' className='headerTitle' onClick={() => toggleDetails(index + 0.1)}>
                                         <div className='mobile-row'>
                                             <img src={playButton2} className={`scheduleIconImg ${expandedSections[index + 0.1] ? 'rotated' : ''}`} alt='playButton2' />
-                                            <div className='classTitle'>{classInfo.topicTitle2}</div>
+                                            <div className='classTitle'>{event.name2}</div>
                                         </div>
-                                        {/* <div>   */}
-                                        <div className='clickDetails'>Topic Details</div>
-                                        {/* </div> */}
+                                        <div>
+                                            <div className='clickDetails'>Topic Details</div>
+                                        </div>
                                     </div>
 
                                     {expandedSections[index + 0.1] && (
                                         <>
                                             <div className='topicDetails'>
-                                                <ul>{classInfo.topicDetails2_1}</ul>
-                                                <ul>{classInfo.topicDetails2_2}</ul>
-                                                <ul>{classInfo.topicDetails2_3}</ul>
-                                                <li>{classInfo.topicDetails2_bullet1}</li>
-                                                <li>{classInfo.topicDetails2_bullet2}</li>
-                                                <li>{classInfo.topicDetails2_bullet3}</li>
+                                                <ReactMarkdown>{event.rich2}</ReactMarkdown>
                                             </div>
                                         </>
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionDate'>{classInfo.topicTitle2_date1}</div>
-                                        <div className='optionTitle'>{classInfo.topicTitle2_title1}</div>
+                                        <div className='optionTime'>{event.timeLecture2}</div>
+                                        <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionDate'>{classInfo.topicTitle2_date2}</div>
-                                        <div className='optionTitle'>{classInfo.topicTitle2_title2}</div>
+                                        <div className='optionTime'>{event.timeCoaching2}</div>
+                                        <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Even Numbered Topic */}
 

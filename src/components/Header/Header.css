@@ -64,6 +64,58 @@
 
 }
 
+/* Styling for the Hero section */
+.hero {
+  display: flex;
+}
+
+.hero > .programName {
+  /* max-width: 10em; */
+  max-height: 10em;
+  height: auto;
+  margin: 0 1em 0 0;
+}
+
+.hero > .jared {
+  max-width: 10em;
+  max-height: 10em;
+  height: auto;
+  margin: 0 1em 0 0;
+}
+
+.hero-paragraphs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.hero-paragraphs p {
+  margin: 0.25em;
+  font-size: 20px
+}
+
+/* Styles for the main heading and subtitle */
+h1 {
+  font-size: 3em;
+  margin: 1em 0 0 0;
+}
+
+.online-course {
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Responsive styles for smaller screens */
 /* Updated styles for the header-links in mobile view */
 @media (max-width: 768px) {
@@ -131,48 +183,23 @@
     font-size: 30px;
 
   }
-}
 
-/* Styling for the Hero section */
-.hero {
-  display: flex;
-}
+  .hero {
+    flex-direction: column;
+  
+  }
 
-.hero img {
-  max-width: 10em;
-  max-height: 10em;
-  height: auto;
-  margin: 0 1em 0 0;
-}
-
-.hero-paragraphs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-weight: 700;
-}
-
-.hero-paragraphs p {
-  margin: 0.25em;
-  font-size: 20px
-}
-
-/* Styles for the main heading and subtitle */
-h1 {
-  font-size: 3em;
-  margin: 1em 0 0 0;
-}
-
-.online-course {
-  font-size: 1.2em;
-  margin-top: 1em;
-}
-
-
-@media only screen and (max-width: 768px) {
-
-  /* Adjust the width for mobile devices */
   .hero-paragraphs p {
-    font-size: 12px
+    font-size: 20px
+  }
+
+  .hero > .jared {
+    display: none;
+  }
+
+  .hero > .programName {
+    max-width: 20em;
+    max-height: 20em;
+    /* margin: 0 1em 0 0; */
   }
 }
