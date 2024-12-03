@@ -16,7 +16,7 @@ export default function Cohort3Schedule() {
             <Navbar />
             <Header />
             <GreenArticle >
-                <h1>December Schedule</h1>
+                <h1>January Schedule</h1>
             </GreenArticle >
             <Cohort5Calendar />
             <TestComponent>
