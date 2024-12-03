@@ -75,11 +75,13 @@ export default function CalendarV2() {
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.timeLecture1}</div>
-                                        <div className='optionTitle'>Watch the Lecture*</div>
+                                        <div className='optionTime'>{event.watch1}</div>
+                                        <div className='optionTitle'>Watch the TEST*</div>
+                                        {/* <div className='optionTime'>{event.timeLecture1}</div> */}
+                                        {/* <div className='optionTitle'>Watch the Lecture*</div> */}
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.timeCoaching1}</div>
+                                        <div className='optionTime'>{event.coach1}</div>
                                         <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Odd Numbered Topic */}
@@ -108,11 +110,11 @@ export default function CalendarV2() {
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.timeLecture2}</div>
+                                        <div className='optionTime'>{event.watch2}</div>
                                         <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.timeCoaching2}</div>
+                                        <div className='optionTime'>{event.coach2}</div>
                                         <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Even Numbered Topic */}

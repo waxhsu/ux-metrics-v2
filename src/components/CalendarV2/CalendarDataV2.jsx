@@ -81,13 +81,13 @@ export const fetchCohort5 = async () => {
       week: record.fields.Week,
 
       name1: record.fields.Name1,
-      timeLecture1: record.fields.TimeLecture1,
-      timeCoaching1: record.fields.TimeCoaching1,
+      watch1: record.fields.WatchOutput1,
+      coach1: record.fields.CoachOutput1,
       rich1: record.fields.RichText1,
 
       name2: record.fields.Name2,
-      timeLecture2: record.fields.TimeLecture2,
-      timeCoaching2: record.fields.TimeCoaching2,
+      watch2: record.fields.WatchOutput2,
+      coach2: record.fields.CoachOutput2,
       rich2: record.fields.RichText2,
       
     }));
