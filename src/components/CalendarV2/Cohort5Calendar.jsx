@@ -5,8 +5,8 @@ import playButton1 from './playButton1.png'
 import playButton2 from './playButton2.png'
 import './CalendarV2.css';
 
-import { fetchCohort5 } from './CalendarDataV2.jsx'; // <--------- UPDATE
-import { COHORT5_DATE_RANGE } from './CalendarDataV2'; // <--------- UPDATE
+import { fetchCohort5, COHORT5_DATE_RANGE } from './CalendarDataV2'; // <--------- UPDATE
+import { formatToLocalTime } from './CalendarDataV2'; // <--------- UPDATE
 
 
 export default function CalendarV2() {
@@ -75,13 +75,11 @@ export default function CalendarV2() {
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.watch1}</div>
-                                        <div className='optionTitle'>Watch the TEST*</div>
-                                        {/* <div className='optionTime'>{event.timeLecture1}</div> */}
-                                        {/* <div className='optionTitle'>Watch the Lecture*</div> */}
+                                        <div className='optionTime'>{event.date1}, {formatToLocalTime(event.watchStart1, false)} - {formatToLocalTime(event.watchEnd1)}</div>
+                                        <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.coach1}</div>
+                                    <div className='optionTime'>{event.date1}, {formatToLocalTime(event.coachStart1, false)} - {formatToLocalTime(event.coachEnd1)}</div>
                                         <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Odd Numbered Topic */}
@@ -110,11 +108,11 @@ export default function CalendarV2() {
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.watch2}</div>
+                                        <div className='optionTime'>{event.date2}, {formatToLocalTime(event.watchStart2, false)} - {formatToLocalTime(event.watchEnd2)}</div>
                                         <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.coach2}</div>
+                                        <div className='optionTime'>{event.date2}, {formatToLocalTime(event.coachStart2, false)} - {formatToLocalTime(event.coachEnd2)}</div>
                                         <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Even Numbered Topic */}

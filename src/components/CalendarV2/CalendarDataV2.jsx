@@ -81,14 +81,23 @@ export const fetchCohort5 = async () => {
       week: record.fields.Week,
 
       name1: record.fields.Name1,
-      watch1: record.fields.WatchOutput1,
-      coach1: record.fields.CoachOutput1,
       rich1: record.fields.RichText1,
+      date1: record.fields.DateOutput1,
 
+      watchStart1: record.fields.WatchStart1,
+      watchEnd1: record.fields.WatchEnd1,
+      coachStart1: record.fields.CoachStart1,
+      coachEnd1: record.fields.CoachEnd1,
+      
+      
       name2: record.fields.Name2,
-      watch2: record.fields.WatchOutput2,
-      coach2: record.fields.CoachOutput2,
       rich2: record.fields.RichText2,
+      date2: record.fields.DateOutput2,
+
+      watchStart2: record.fields.WatchStart2,
+      watchEnd2: record.fields.WatchEnd2,
+      coachStart2: record.fields.CoachStart2,
+      coachEnd2: record.fields.CoachEnd2,
       
     }));
   } catch (error) {
@@ -298,3 +307,33 @@ export const fetchOctober = async () => {
 /// COHORT 1 END ///
 /// COHORT 1 END ///
 /// COHORT 1 END ///
+
+
+
+/// FORMAT TO LOCAL TIME ///
+/// FORMAT TO LOCAL TIME ///
+/// FORMAT TO LOCAL TIME ///
+
+export const formatToLocalTime = (dateString, includeTimezone = true) => {
+  if (!dateString) return "N/A";
+
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "Invalid date";
+
+  let formattedTime = new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      // minute: '2-digit',
+      hour12: true,
+      timeZoneName: includeTimezone ? 'short' : undefined, // Conditionally include timezone
+  }).format(date);
+
+  // Remove any space (regular or non-breaking) before AM/PM and make it lowercase
+  formattedTime = formattedTime.replace(/[\s\u00A0](\wM)/g, match => match.toLowerCase().trim());
+
+  return formattedTime;
+};
+
+
+/// FORMAT TO LOCAL TIME ///
+/// FORMAT TO LOCAL TIME ///
+/// FORMAT TO LOCAL TIME ///

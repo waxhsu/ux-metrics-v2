@@ -10,13 +10,13 @@ import Cohort5Calendar from "../components/CalendarV2/Cohort5Calendar";
 import HorizontalCohortSelector from "../components/HorizontalCohortSelector/HorizontalCohortSelector";
 import Navbar from "../components/Navbar/Navbar";
 
-export default function Cohort3Schedule() {
+export default function Cohort5Schedule() {
     return (
-        <div id="Cohort3Schedule">
+        <div id="Cohort5Schedule">
             <Navbar />
             <Header />
             <GreenArticle >
-                <h1>January Schedule</h1>
+                <h1>Test Schedule</h1>
             </GreenArticle >
             <Cohort5Calendar />
             <TestComponent>
