@@ -126,7 +126,8 @@
 
 .scheduleTitle {
     display: flex;
-    border: red 2px solid;
+    align-items: center;
+    justify-content: space-between;
 }
 
 select {

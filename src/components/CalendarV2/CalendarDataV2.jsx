@@ -313,98 +313,90 @@ export const fetchOctober = async () => {
 
 
 
-/// FORMAT TO LOCAL TIME ///
-/// FORMAT TO LOCAL TIME ///
-/// FORMAT TO LOCAL TIME ///
+/// FORMAT TO LOCAL TIME AND TIMEZONE DROPDOWN ///
+/// FORMAT TO LOCAL TIME AND TIMEZONE DROPDOWN ///
+/// FORMAT TO LOCAL TIME AND TIMEZONE DROPDOWN ///
 
-// export const formatToLocalTime = (dateString, includeTimezone = true, timezone = "local") => {
+// export const formatToLocalTime = (dateString, includeTimezone = true, timezone = null) => {
 //   if (!dateString) return "N/A";
 
 //   const date = new Date(dateString);
 //   if (isNaN(date.getTime())) return "Invalid date";
 
+//   // Use the local timezone if no timezone is provided
+//   const localTimezone = timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 //   let formattedTime = new Intl.DateTimeFormat('en-US', {
 //     hour: 'numeric',
-//     // minute: '2-digit',
+//     minute: '2-digit',
 //     hour12: true,
-//     timeZone: timezone, // Use selected timezone
+//     timeZone: localTimezone, // Use local or passed timezone
 //     timeZoneName: includeTimezone ? 'short' : undefined
 //   }).format(date);
-  
-//   // Remove any space (regular or non-breaking) before AM/PM and make it lowercase
-//   formattedTime = formattedTime
-//     .replace(/([\dAPap][Mm])([A-Z])/g, "$1 $2") // Ensure space between time and timezone
-//     // .replace(/[\s\u00A0](\wM)/g, match => match.toLowerCase().trim()); // Make AM/PM lowercase
+
+//   // Remove the first space before AM/PM and make it lowercase
+//   formattedTime = formattedTime.replace(/ (\wM)/, match => match.toLowerCase().trim());
+
+//   // Remove minutes if they are ":00"
+//   formattedTime = formattedTime.replace(/(:00)/, '');
 
 //   return formattedTime;
 // };
 
-export const formatToLocalTime = (dateString, includeTimezone = true, timezone = "local") => {
+export const formatToLocalTime = (dateString, includeTimezone = true, timezone = null) => {
   if (!dateString) return "N/A";
 
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return "Invalid date";
 
-  // If the timezone is set to "local", get the user's local timezone
-  if (timezone === "local") {
-    timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  }
+  // Use the local timezone if no timezone is provided
+  const localTimezone = timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; // Fallback to UTC if no timezone is detected
 
   let formattedTime = new Intl.DateTimeFormat('en-US', {
     hour: 'numeric',
+    minute: '2-digit',
     hour12: true,
-    timeZone: timezone, // Use selected timezone
+    timeZone: localTimezone, // Use local or passed timezone
     timeZoneName: includeTimezone ? 'short' : undefined
   }).format(date);
-  
-  // Ensure space between time and timezone and make AM/PM lowercase
-  formattedTime = formattedTime
-    .replace(/([\dAPap][Mm])([A-Z])/g, "$1 $2") // Ensure space between time and timezone
-    .replace(/([\s\u00A0])([APap][Mm])/g, "$1$2") // Make AM/PM lowercase without adding extra space
+
+  // Remove the first space before AM/PM and make it lowercase
+  formattedTime = formattedTime.replace(/ (\wM)/, match => match.toLowerCase().trim());
+
+  // Remove minutes if they are ":00"
+  formattedTime = formattedTime.replace(/(:00)/, '');
 
   return formattedTime;
 };
 
 
-
-
-
-/// TIMEZONE DROPDOWN ///
-/// TIMEZONE DROPDOWN ///
-/// TIMEZONE DROPDOWN ///
-
 export const timezones = [
-  "UTC", // Coordinated Universal Time
-  "Africa/Abidjan", // Ivory Coast (GMT)
-  "Africa/Accra", // Ghana (GMT)
-  "Africa/Addis_Ababa", // East Africa Time (EAT)
-  "Africa/Algiers", // Central European Time (CET)
-  "Africa/Blantyre", // Central Africa Time (CAT)
-  "Africa/Dakar", // Western Africa Time (WAT)
-  "Africa/Lagos", // West Africa Time (WAT)
-  "America/New_York", // Eastern Time (US & Canada)
-  "America/Chicago", // Central Time (US & Canada)
-  "America/Denver", // Mountain Time (US & Canada)
-  "America/Los_Angeles", // Pacific Time (US & Canada)
-  // "America/Phoenix", // Arizona (no DST)
-  "America/Anchorage", // Alaska Standard Time
-  // "America/Honolulu", // Hawaii-Aleutian Standard Time
-  "Europe/London", // Greenwich Mean Time (GMT)
-  "Europe/Paris", // Central European Time (CET)
-  "Asia/Tokyo", // Japan Standard Time (JST)
-  "Asia/Hong_Kong", // Hong Kong Time (HKT)
-  "Asia/Singapore", // Singapore Standard Time (SGT)
-  "Australia/Sydney", // Australian Eastern Standard Time (AEST)
-  "Australia/Perth", // Australian Western Standard Time (AWST)
-  // "Asia/Kolkata", // Indian Standard Time (IST)
-  "Asia/Karachi", // Pakistan Standard Time (PST)
-  "Asia/Seoul", // Korea Standard Time (KST)
-  "Asia/Shanghai", // China Standard Time (CST)
-  "Africa/Johannesburg", // South Africa Standard Time (SAST)
-  "America/Argentina/Buenos_Aires", // Argentina Time (ART)
-  "Europe/Moscow", // Moscow Time (MSK)
-  "Asia/Dubai", // Gulf Standard Time (GST)
-  "Pacific/Auckland", // New Zealand Standard Time (NZST)
+  "UTC",
+  "America/New_York", // EST
+  "America/Los_Angeles", // PST
+  "America/Chicago", // CST
+  "America/Denver", // MST
+  "America/Anchorage", // AKST
+  "America/Toronto", // EST
+  "America/Vancouver", // PST
+  "Europe/London", // GMT
+  "Europe/Paris", // CET
+  "Europe/Berlin", // CET
+  "Europe/Moscow", // MSK
+  "Europe/Istanbul", // TRT
+  "Africa/Cairo", // EET
+  "Africa/Johannesburg", // SAST
+  "Asia/Tokyo", // JST
+  "Asia/Shanghai", // CST
+  "Asia/Hong_Kong", // HKT
+  "Asia/Seoul", // KST
+  "Asia/Kolkata", // IST
+  "Asia/Dubai", // GST
+  "Australia/Sydney", // AEDT
+  "Australia/Melbourne", // AEDT
+  "Pacific/Auckland", // NZDT
+  "Pacific/Fiji", // FJT
+  "Pacific/Honolulu" // HST
 ];
 
 
@@ -422,9 +414,3 @@ export const timezoneDropdown = (selectedTimezone, setSelectedTimezone) => {
     </select>
   );
 };
-
-
-
-/// TIMEZONE DROPDOWN ///
-/// TIMEZONE DROPDOWN ///
-/// TIMEZONE DROPDOWN ///
