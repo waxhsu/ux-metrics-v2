@@ -43,7 +43,10 @@ export default function CalendarV2() {
         <div className={containerClass}>
             <div className='calendar'>
                 
+                <div className='scheduleTitle'>
                 <h2>Cohort: {COHORT5_DATE_RANGE[0].start} - {COHORT5_DATE_RANGE[0].end}</h2>
+                {timezoneDropdown(selectedTimezone, setSelectedTimezone)}
+                </div>
                 {/* <h3>Text about the timezone is default is EST, but user can select from the dropdown</h3> */}
 
                 
@@ -123,14 +126,14 @@ export default function CalendarV2() {
                         </div>
                     );
                 })}
-                            <div className="dropdown-paragraphs">
+                            {/* <div className="dropdown-paragraphs">
                                 <p>All times listed are in your local time zone.</p>
                                 <p>We welcome folks from other time zones to join us.</p>
                                 <div className="dropdown">
                                 <p>Translate times into more time zones:</p>
                                 {timezoneDropdown(selectedTimezone, setSelectedTimezone)}
                                 </div>
-                            </div>
+                            </div> */}
             </div>
         </div>
     );

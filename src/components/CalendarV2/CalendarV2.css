@@ -107,14 +107,13 @@
     line-height: 25px;
 }
 
-.dropdown-paragraphs{
+/* .dropdown-paragraphs{
     margin-top: 2em;
 }
 
 .dropdown-paragraphs p{
     line-height: 1.5em;
     margin: 0;
-    /* padding: 0.15em 0 0 0; */
 }
 
 .dropdown {
@@ -123,13 +122,17 @@
 
 .dropdown p {
     margin: 0 0 10px 0;
+} */
+
+.scheduleTitle {
+    display: flex;
+    border: red 2px solid;
 }
 
-.dropdown select {
+select {
     background-color: rgb(235, 235, 235);
     border-radius: 10px;
     height: 2.2rem;
-    width: 20rem;
     font-weight: 700;
 }
 

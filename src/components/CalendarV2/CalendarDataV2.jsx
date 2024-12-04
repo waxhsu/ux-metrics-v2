@@ -317,27 +317,54 @@ export const fetchOctober = async () => {
 /// FORMAT TO LOCAL TIME ///
 /// FORMAT TO LOCAL TIME ///
 
+// export const formatToLocalTime = (dateString, includeTimezone = true, timezone = "local") => {
+//   if (!dateString) return "N/A";
+
+//   const date = new Date(dateString);
+//   if (isNaN(date.getTime())) return "Invalid date";
+
+//   let formattedTime = new Intl.DateTimeFormat('en-US', {
+//     hour: 'numeric',
+//     // minute: '2-digit',
+//     hour12: true,
+//     timeZone: timezone, // Use selected timezone
+//     timeZoneName: includeTimezone ? 'short' : undefined
+//   }).format(date);
+  
+//   // Remove any space (regular or non-breaking) before AM/PM and make it lowercase
+//   formattedTime = formattedTime
+//     .replace(/([\dAPap][Mm])([A-Z])/g, "$1 $2") // Ensure space between time and timezone
+//     // .replace(/[\s\u00A0](\wM)/g, match => match.toLowerCase().trim()); // Make AM/PM lowercase
+
+//   return formattedTime;
+// };
+
 export const formatToLocalTime = (dateString, includeTimezone = true, timezone = "local") => {
   if (!dateString) return "N/A";
 
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return "Invalid date";
 
+  // If the timezone is set to "local", get the user's local timezone
+  if (timezone === "local") {
+    timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  }
+
   let formattedTime = new Intl.DateTimeFormat('en-US', {
     hour: 'numeric',
-    // minute: '2-digit',
     hour12: true,
     timeZone: timezone, // Use selected timezone
     timeZoneName: includeTimezone ? 'short' : undefined
   }).format(date);
   
-  // Remove any space (regular or non-breaking) before AM/PM and make it lowercase
+  // Ensure space between time and timezone and make AM/PM lowercase
   formattedTime = formattedTime
     .replace(/([\dAPap][Mm])([A-Z])/g, "$1 $2") // Ensure space between time and timezone
-    // .replace(/[\s\u00A0](\wM)/g, match => match.toLowerCase().trim()); // Make AM/PM lowercase
+    .replace(/([\s\u00A0])([APap][Mm])/g, "$1$2") // Make AM/PM lowercase without adding extra space
 
   return formattedTime;
 };
+
 
 
 
