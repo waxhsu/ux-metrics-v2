@@ -124,7 +124,7 @@ export default function CalendarV2() {
                     );
                 })}
                             <div className="dropdown-paragraphs">
-                                <p>All times listed are in Eastern Time Zone.</p>
+                                <p>All times listed are in your local time zone.</p>
                                 <p>We welcome folks from other time zones to join us.</p>
                                 <div className="dropdown">
                                 <p>Translate times into more time zones:</p>

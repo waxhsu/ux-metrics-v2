@@ -317,7 +317,7 @@ export const fetchOctober = async () => {
 /// FORMAT TO LOCAL TIME ///
 /// FORMAT TO LOCAL TIME ///
 
-export const formatToLocalTime = (dateString, includeTimezone = true, timezone = "America/New_York") => {
+export const formatToLocalTime = (dateString, includeTimezone = true, timezone = "local") => {
   if (!dateString) return "N/A";
 
   const date = new Date(dateString);
