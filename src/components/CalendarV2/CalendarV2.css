@@ -38,8 +38,6 @@
     margin-bottom: 7px;
 }
 
-
-
 .scheduleIconImg {
     max-width: 1.75rem;
     max-height: 1.75rem;
@@ -52,7 +50,6 @@
     /* 90-degree rotation */
 }
 
-
 .classTitle {
     align-content: center;
     padding-right: 1em;
@@ -64,8 +61,6 @@
     text-decoration: underline;
 }
 
-
-
 .subTitle,
 .topicDetails {
     padding: 15px 30px 15px;
@@ -74,7 +69,6 @@
     background-color: white;
     margin-bottom: 0.5rem;
 }
-
 
 .topicDetails {
     display: flex;
@@ -85,8 +79,6 @@
 .topicDetails p{
     margin: 5px 0;
 }
-
-
 
 .mobile-row {
     display: flex;
@@ -114,6 +106,33 @@
     margin: 5px 0 0 0;
     line-height: 25px;
 }
+
+.dropdown-paragraphs{
+    margin-top: 2em;
+}
+
+.dropdown-paragraphs p{
+    line-height: 1.5em;
+    margin: 0;
+    /* padding: 0.15em 0 0 0; */
+}
+
+.dropdown {
+    padding: 20px 0 0 0;
+}
+
+.dropdown p {
+    margin: 0 0 10px 0;
+}
+
+.dropdown select {
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+    height: 2.2rem;
+    width: 20rem;
+    font-weight: 700;
+}
+
 
 
 

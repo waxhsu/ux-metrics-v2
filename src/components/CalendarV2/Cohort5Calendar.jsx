@@ -6,11 +6,14 @@ import playButton2 from './playButton2.png'
 import './CalendarV2.css';
 
 import { fetchCohort5, COHORT5_DATE_RANGE } from './CalendarDataV2'; // <--------- UPDATE
-import { formatToLocalTime } from './CalendarDataV2'; // <--------- UPDATE
+import { formatToLocalTime } from './CalendarDataV2';
+import { timezoneDropdown } from './CalendarDataV2';
 
 
 export default function CalendarV2() {
     const [expandedSections, setExpandedSections] = useState({});
+    const [selectedTimezone, setSelectedTimezone] = useState("America/New_York"); // Default to EST
+
     const location = useLocation();
     const toggleDetails = (index) => {
         setExpandedSections(prevState => ({
@@ -27,13 +30,11 @@ export default function CalendarV2() {
     useEffect(() => {
         const loadEvents = async () => {
           const fetchedData = await fetchCohort5(); // <--------- UPDATE
-      
+
           // Sort events by week number in ascending order
           const sortedEvents = fetchedData.sort((a, b) => a.week - b.week);
-      
           setEvents(sortedEvents);
         };
-      
         loadEvents();
       }, []);
 
@@ -43,8 +44,8 @@ export default function CalendarV2() {
             <div className='calendar'>
                 
                 <h2>Cohort: {COHORT5_DATE_RANGE[0].start} - {COHORT5_DATE_RANGE[0].end}</h2>
+                <h3>Text about the timezone is default is EST, but user can select from the dropdown</h3>
 
-                {/* <h3>UPDATE IF YOU NEED TO ANNOUNCE ANY CHANGES TO THE ENTIRE SCHEDULE</h3> */}
                 
                 {events.map((event, index) => {
                     return (
@@ -75,11 +76,11 @@ export default function CalendarV2() {
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.date1}, {formatToLocalTime(event.watchStart1, false)} - {formatToLocalTime(event.watchEnd1)}</div>
+                                        <div className='optionTime'>{event.date1}, {formatToLocalTime(event.watchStart1, false, selectedTimezone)} - {formatToLocalTime(event.watchEnd1, true, selectedTimezone)}</div>
                                         <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                    <div className='optionTime'>{event.date1}, {formatToLocalTime(event.coachStart1, false)} - {formatToLocalTime(event.coachEnd1)}</div>
+                                        <div className='optionTime'>{event.date1}, {formatToLocalTime(event.coachStart1, false, selectedTimezone)} - {formatToLocalTime(event.coachEnd1, true, selectedTimezone)}</div>
                                         <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Odd Numbered Topic */}
@@ -108,20 +109,28 @@ export default function CalendarV2() {
                                     )}
 
                                     <div id='optionalTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.date2}, {formatToLocalTime(event.watchStart2, false)} - {formatToLocalTime(event.watchEnd2)}</div>
+                                        <div className='optionTime'>{event.date1}, {formatToLocalTime(event.watchStart2, false, selectedTimezone)} - {formatToLocalTime(event.watchEnd2, true, selectedTimezone)}</div>
                                         <div className='optionTitle'>Watch the Lecture*</div>
                                     </div>
                                     <div id='liveTopicTitle' className='subTitle'>
-                                        <div className='optionTime'>{event.date2}, {formatToLocalTime(event.coachStart2, false)} - {formatToLocalTime(event.coachEnd2)}</div>
+                                        <div className='optionTime'>{event.date1}, {formatToLocalTime(event.coachStart2, false, selectedTimezone)} - {formatToLocalTime(event.coachEnd2, true, selectedTimezone)}</div>
                                         <div className='optionTitle'>Live Coaching with Jared</div>
                                     </div>
                                     {/* END Even Numbered Topic */}
-
                                 </div>
                             </div>
+
                         </div>
                     );
                 })}
+                            <div className="dropdown-paragraphs">
+                                <p>All times listed are in Eastern Time Zone.</p>
+                                <p>We welcome folks from other time zones to join us.</p>
+                                <div className="dropdown">
+                                <p>Translate times into more time zones:</p>
+                                {timezoneDropdown(selectedTimezone, setSelectedTimezone)}
+                                </div>
+                            </div>
             </div>
         </div>
     );

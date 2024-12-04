@@ -89,7 +89,7 @@ export const fetchCohort5 = async () => {
       coachStart1: record.fields.CoachStart1,
       coachEnd1: record.fields.CoachEnd1,
       
-      
+
       name2: record.fields.Name2,
       rich2: record.fields.RichText2,
       date2: record.fields.DateOutput2,
@@ -310,30 +310,94 @@ export const fetchOctober = async () => {
 
 
 
+
+
+
 /// FORMAT TO LOCAL TIME ///
 /// FORMAT TO LOCAL TIME ///
 /// FORMAT TO LOCAL TIME ///
 
-export const formatToLocalTime = (dateString, includeTimezone = true) => {
+export const formatToLocalTime = (dateString, includeTimezone = true, timezone = "America/New_York") => {
   if (!dateString) return "N/A";
 
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return "Invalid date";
 
   let formattedTime = new Intl.DateTimeFormat('en-US', {
-      hour: 'numeric',
-      // minute: '2-digit',
-      hour12: true,
-      timeZoneName: includeTimezone ? 'short' : undefined, // Conditionally include timezone
+    hour: 'numeric',
+    // minute: '2-digit',
+    hour12: true,
+    timeZone: timezone, // Use selected timezone
+    timeZoneName: includeTimezone ? 'short' : undefined
   }).format(date);
-
+  
   // Remove any space (regular or non-breaking) before AM/PM and make it lowercase
-  formattedTime = formattedTime.replace(/[\s\u00A0](\wM)/g, match => match.toLowerCase().trim());
+  formattedTime = formattedTime
+    .replace(/([\dAPap][Mm])([A-Z])/g, "$1 $2") // Ensure space between time and timezone
+    // .replace(/[\s\u00A0](\wM)/g, match => match.toLowerCase().trim()); // Make AM/PM lowercase
 
   return formattedTime;
 };
 
 
-/// FORMAT TO LOCAL TIME ///
-/// FORMAT TO LOCAL TIME ///
-/// FORMAT TO LOCAL TIME ///
+
+
+/// TIMEZONE DROPDOWN ///
+/// TIMEZONE DROPDOWN ///
+/// TIMEZONE DROPDOWN ///
+
+export const timezones = [
+  "UTC", // Coordinated Universal Time
+  "Africa/Abidjan", // Ivory Coast (GMT)
+  "Africa/Accra", // Ghana (GMT)
+  "Africa/Addis_Ababa", // East Africa Time (EAT)
+  "Africa/Algiers", // Central European Time (CET)
+  "Africa/Blantyre", // Central Africa Time (CAT)
+  "Africa/Dakar", // Western Africa Time (WAT)
+  "Africa/Lagos", // West Africa Time (WAT)
+  "America/New_York", // Eastern Time (US & Canada)
+  "America/Chicago", // Central Time (US & Canada)
+  "America/Denver", // Mountain Time (US & Canada)
+  "America/Los_Angeles", // Pacific Time (US & Canada)
+  // "America/Phoenix", // Arizona (no DST)
+  "America/Anchorage", // Alaska Standard Time
+  // "America/Honolulu", // Hawaii-Aleutian Standard Time
+  "Europe/London", // Greenwich Mean Time (GMT)
+  "Europe/Paris", // Central European Time (CET)
+  "Asia/Tokyo", // Japan Standard Time (JST)
+  "Asia/Hong_Kong", // Hong Kong Time (HKT)
+  "Asia/Singapore", // Singapore Standard Time (SGT)
+  "Australia/Sydney", // Australian Eastern Standard Time (AEST)
+  "Australia/Perth", // Australian Western Standard Time (AWST)
+  // "Asia/Kolkata", // Indian Standard Time (IST)
+  "Asia/Karachi", // Pakistan Standard Time (PST)
+  "Asia/Seoul", // Korea Standard Time (KST)
+  "Asia/Shanghai", // China Standard Time (CST)
+  "Africa/Johannesburg", // South Africa Standard Time (SAST)
+  "America/Argentina/Buenos_Aires", // Argentina Time (ART)
+  "Europe/Moscow", // Moscow Time (MSK)
+  "Asia/Dubai", // Gulf Standard Time (GST)
+  "Pacific/Auckland", // New Zealand Standard Time (NZST)
+];
+
+
+export const timezoneDropdown = (selectedTimezone, setSelectedTimezone) => {
+  return (
+    <select 
+      value={selectedTimezone} 
+      onChange={(e) => setSelectedTimezone(e.target.value)}
+    >
+      {timezones.map((tz) => (
+        <option key={tz} value={tz}>
+          {tz}
+        </option>
+      ))}
+    </select>
+  );
+};
+
+
+
+/// TIMEZONE DROPDOWN ///
+/// TIMEZONE DROPDOWN ///
+/// TIMEZONE DROPDOWN ///
