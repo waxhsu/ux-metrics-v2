@@ -41,12 +41,25 @@ export default function CalendarV2() {
     return (
         // containerClass here is a CSS class that toggles off on the home page.
         <div className={containerClass}>
-            <div className='calendar'>
+            <div className='calendarV2'>
                 
-                <div className='scheduleTitle'>
-                <h2>Cohort: {COHORT5_DATE_RANGE[0].start} - {COHORT5_DATE_RANGE[0].end}</h2>
-                {timezoneDropdown(selectedTimezone, setSelectedTimezone)}
+
+            <div className='scheduleTitle'>
+                <div className='courseSchedule-container'>
+                    <h1>Course Schedule</h1>
+                    <h2>Cohort: {COHORT5_DATE_RANGE[0].start} - {COHORT5_DATE_RANGE[0].end}</h2>
                 </div>
+                
+
+                <div className='timezone-container'>
+                    <div className='timezoneText'>
+                        <p>All times are currently listed in East Time Zone.</p>
+                        <p>We welcome folks from other time zones to join us.</p>
+                        <p>Translate times to your time zone with the drop down below.</p>
+                    </div>
+                    {timezoneDropdown(selectedTimezone, setSelectedTimezone)}
+                </div>
+            </div>
                 {/* <h3>Text about the timezone is default is EST, but user can select from the dropdown</h3> */}
 
                 
@@ -126,14 +139,7 @@ export default function CalendarV2() {
                         </div>
                     );
                 })}
-                            {/* <div className="dropdown-paragraphs">
-                                <p>All times listed are in your local time zone.</p>
-                                <p>We welcome folks from other time zones to join us.</p>
-                                <div className="dropdown">
-                                <p>Translate times into more time zones:</p>
-                                {timezoneDropdown(selectedTimezone, setSelectedTimezone)}
-                                </div>
-                            </div> */}
+
             </div>
         </div>
     );
