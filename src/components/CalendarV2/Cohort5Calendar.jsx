@@ -44,7 +44,7 @@ export default function CalendarV2() {
             <div className='calendar'>
                 
                 <h2>Cohort: {COHORT5_DATE_RANGE[0].start} - {COHORT5_DATE_RANGE[0].end}</h2>
-                <h3>Text about the timezone is default is EST, but user can select from the dropdown</h3>
+                {/* <h3>Text about the timezone is default is EST, but user can select from the dropdown</h3> */}
 
                 
                 {events.map((event, index) => {
