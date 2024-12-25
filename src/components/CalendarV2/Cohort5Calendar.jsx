@@ -19,7 +19,7 @@ export default function CalendarV2() {
         setExpandedSections(prevState => ({
             ...prevState,
             [index]: !prevState[index]
-        }));
+        })); 
     };
 
     // Conditionally add the class 'inactive' when on the home page ("/")

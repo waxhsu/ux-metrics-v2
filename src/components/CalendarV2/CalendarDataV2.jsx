@@ -377,22 +377,18 @@ export const timezones = [
   "America/Chicago", // CST
   "America/Denver", // MST
   "America/Anchorage", // AKST
-  "America/Toronto", // EST
-  "America/Vancouver", // PST
   "Europe/London", // GMT
   "Europe/Paris", // CET
-  "Europe/Berlin", // CET
   "Europe/Moscow", // MSK
   "Europe/Istanbul", // TRT
   "Africa/Cairo", // EET
   "Africa/Johannesburg", // SAST
   "Asia/Tokyo", // JST
   "Asia/Shanghai", // CST
-  "Asia/Hong_Kong", // HKT
+  "Asia/Taipei", // HKT
   "Asia/Seoul", // KST
   "Asia/Kolkata", // IST
   "Asia/Dubai", // GST
-  "Australia/Sydney", // AEDT
   "Australia/Melbourne", // AEDT
   "Pacific/Auckland", // NZDT
   "Pacific/Fiji", // FJT
